@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latihan Soal IPA SMP Kelas VIII</title>
+  <style>
+    :root {
+      --primary-color: #1b5e20;
+      --primary-light: #4c8c4a;
+      --primary-dark: #003300;
+      --accent-color: #ffc107;
+      --bg-color: #f1f8e9;
+      --card-bg: #ffffff;
+      --wa-color: #25D366;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* --- HEADER & LOGO --- */
+    .header {
+      display: flex; align-items: center; gap: 20px; padding: 20px 5%;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Logo Container dengan Background Putih */
+    .logo-box {
+      background-color: #ffffff;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .logo-box img { width: 100%; height: auto; object-fit: contain; }
+
+    .header .title h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+    .header .title p { margin: 5px 0 0; font-size: 14px; opacity: 0.9; }
+
+    .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+
+    .student-info {
+      background: var(--card-bg); padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      margin-bottom: 25px; text-align: center; border-left: 5px solid var(--accent-color);
+    }
+    .student-info h1 { margin: 0 0 5px 0; color: var(--primary-color); font-size: 22px; }
+
+    /* --- SOAL --- */
+    .question-card {
+      background: var(--card-bg); margin-bottom: 15px; padding: 20px; border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #eee;
+    }
+    .question-text { font-weight: 600; margin-bottom: 15px; color: #2c3e50; }
+    .options-grid { display: grid; gap: 10px; }
+
+    .option-label {
+      display: flex; align-items: center; padding: 10px 15px; border: 1px solid #ddd;
+      border-radius: 8px; cursor: pointer; transition: 0.2s;
+    }
+    .option-label:hover { background: #f9f9f9; border-color: var(--primary-light); }
+    
+    .option-label input[type="radio"] {
+      appearance: none; width: 18px; height: 18px; border: 2px solid #aaa; border-radius: 50%;
+      margin-right: 12px; outline: none; position: relative;
+    }
+    .option-label input[type="radio"]:checked { border-color: var(--primary-color); }
+    .option-label input[type="radio"]:checked::after {
+      content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%;
+    }
+
+    /* Feedback Colors */
+    .option-label.correct { background-color: #d4edda !important; border-color: #28a745 !important; color: #155724; }
+    .option-label.wrong { background-color: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+    .option-label.dimmed { opacity: 0.5; }
+
+    /* --- BUTTONS --- */
+    .action-buttons { display: flex; justify-content: center; gap: 15px; margin: 40px 0; flex-wrap: wrap; }
+    .btn {
+      padding: 12px 30px; font-size: 16px; font-weight: bold; border: none; border-radius: 30px;
+      cursor: pointer; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: inline-flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .btn-primary { background: var(--primary-color); color: white; }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    
+    .btn-whatsapp { 
+      background: var(--wa-color); 
+      color: white; 
+      display: none; 
+    }
+    .btn-whatsapp:hover { background: #1ebe57; transform: translateY(-2px); }
+
+    .btn-reset { background: white; color: var(--primary-color); border: 2px solid var(--primary-color); display: none; }
+    .btn-reset:hover { background: #f1f8e9; }
+
+    /* Result Section di Web */
+    #result-section {
+      display: none; text-align: center; margin-top: 30px; padding: 30px; 
+      background: white; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      border-top: 6px solid var(--accent-color);
+    }
+    .score-display { font-size: 48px; font-weight: 800; color: var(--primary-color); margin: 10px 0; }
+    .grade-badge { display: inline-block; padding: 5px 15px; border-radius: 20px; font-weight: bold; color: white; font-size: 14px; margin-bottom: 10px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-box">
+      <img src="https://z-cdn-media.chatglm.cn/files/56e90a19-085a-42bd-b085-dc0377e4104a.png?auth_key=1870629051-f1a20879f4e24714b010d99fedb74bbe-0-52bc6c2bfa5d1611e30f06b91dbf46d3" alt="Logo Sekolah">
+    </div>
+    <div class="title">
+      <h2>SMPK Frateran Ndao-Ende</h2>
+      <p>Latihan Soal IPA Kelas VIII</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="student-info">
+      <h1>Latihan Soal IPA</h1>
+      <p>Nama: <strong>Lambertus Adam Lowo Ngole</strong> | Kelas: <strong>VIII</strong></p>
+    </div>
+
+    <form id="quiz">
+      <!-- SOAL 1-10 (Dari Input) -->
+      <div class="question-card" id="q1">
+        <div class="question-text">1. Organ yang berfungsi memompa darah ke seluruh tubuh adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q1" value="A"> Paru-paru</label>
+          <label class="option-label"><input type="radio" name="q1" value="B"> Jantung</label>
+          <label class="option-label"><input type="radio" name="q1" value="C"> Ginjal</label>
+          <label class="option-label"><input type="radio" name="q1" value="D"> Hati</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q2">
+        <div class="question-text">2. Zat yang dihasilkan tumbuhan saat fotosintesis adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q2" value="A"> Karbon dioksida</label>
+          <label class="option-label"><input type="radio" name="q2" value="B"> Air</label>
+          <label class="option-label"><input type="radio" name="q2" value="C"> Oksigen</label>
+          <label class="option-label"><input type="radio" name="q2" value="D"> Nitrogen</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q3">
+        <div class="question-text">3. Perubahan zat cair menjadi gas disebut …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q3" value="A"> Membeku</label>
+          <label class="option-label"><input type="radio" name="q3" value="B"> Mengembun</label>
+          <label class="option-label"><input type="radio" name="q3" value="C"> Menguap</label>
+          <label class="option-label"><input type="radio" name="q3" value="D"> Mencair</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q4">
+        <div class="question-text">4. Alat pernapasan pada ikan adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q4" value="A"> Paru-paru</label>
+          <label class="option-label"><input type="radio" name="q4" value="B"> Insang</label>
+          <label class="option-label"><input type="radio" name="q4" value="C"> Trakea</label>
+          <label class="option-label"><input type="radio" name="q4" value="D"> Kulit</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q5">
+        <div class="question-text">5. Gaya yang menyebabkan benda jatuh ke bawah adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q5" value="A"> Gaya magnet</label>
+          <label class="option-label"><input type="radio" name="q5" value="B"> Gaya listrik</label>
+          <label class="option-label"><input type="radio" name="q5" value="C"> Gaya gesek</label>
+          <label class="option-label"><input type="radio" name="q5" value="D"> Gaya gravitasi</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q6">
+        <div class="question-text">6. Contoh perubahan kimia adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q6" value="A"> Es mencair</label>
+          <label class="option-label"><input type="radio" name="q6" value="B"> Kertas terbakar</label>
+          <label class="option-label"><input type="radio" name="q6" value="C"> Air membeku</label>
+          <label class="option-label"><input type="radio" name="q6" value="D"> Gula larut</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q7">
+        <div class="question-text">7. Bagian mata yang berfungsi mengatur cahaya adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q7" value="A"> Retina</label>
+          <label class="option-label"><input type="radio" name="q7" value="B"> Iris</label>
+          <label class="option-label"><input type="radio" name="q7" value="C"> Lensa</label>
+          <label class="option-label"><input type="radio" name="q7" value="D"> Saraf optik</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q8">
+        <div class="question-text">8. Perpindahan panas tan
