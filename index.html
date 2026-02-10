@@ -3,137 +3,356 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Latihan Soal IPA SMP Kelas VIII (Tingkat Tinggi)</title>
+  <title>Latihan Soal IPA SMP Kelas VIII - Validasi Lengkap</title>
   <style>
     :root {
-      --primary-color: #1b5e20;
+      --primary-color: #1b5e20; /* Hijau Tua */
       --primary-light: #4c8c4a;
       --primary-dark: #003300;
-      --accent-color: #ffc107;
+      --accent-color: #ffc107; /* Kuning Emas */
       --bg-color: #f1f8e9;
       --card-bg: #ffffff;
+      --text-color: #333;
       --wa-color: #25D366;
+      --danger-color: #dc3545;
+      --success-color: #28a745;
     }
+
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
       background-color: var(--bg-color);
       margin: 0;
       padding: 0;
-      color: #333;
+      color: var(--text-color);
       line-height: 1.6;
     }
 
-    /* --- HEADER & LOGO (TANPA BACKGROUND) --- */
+    /* --- HEADER --- */
     .header {
-      display: flex; align-items: center; gap: 20px; padding: 20px 5%;
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 5%;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* Logo Box - Background Dihapus agar Transparan */
     .logo-box {
-      width: 70px;
-      height: 70px;
+      width: 80px;
+      height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
-      /* Tidak ada background-color, border-radius, box-shadow, padding */
+      background: transparent;
     }
-    .logo-box img { width: 100%; height: auto; object-fit: contain; }
+    
+    .logo-box img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
 
-    .header .title h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
-    .header .title p { margin: 5px 0 0; font-size: 14px; opacity: 0.9; }
+    .header .title h2 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .header .title p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      opacity: 0.9;
+    }
 
-    .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+    .container {
+      max-width: 850px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
 
+    /* --- STUDENT INFO CARD --- */
     .student-info {
-      background: var(--card-bg); padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      margin-bottom: 25px; text-align: center; border-left: 5px solid var(--accent-color);
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      text-align: center;
+      border-left: 6px solid var(--accent-color);
     }
-    .student-info h1 { margin: 0 0 5px 0; color: var(--primary-color); font-size: 22px; }
-    .student-info .sub-title { font-size: 14px; color: #666; font-weight: normal; margin-top: 5px; font-style: italic; }
+    .student-info h1 {
+      margin: 0 0 10px 0;
+      color: var(--primary-color);
+      font-size: 24px;
+    }
+    .student-info p {
+      margin: 5px 0;
+      font-size: 16px;
+      color: #555;
+    }
+    .student-info strong { color: var(--primary-dark); }
+    .sub-title {
+      display: inline-block;
+      background: #e8f5e9;
+      color: var(--primary-color);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
 
-    /* --- SOAL --- */
+    /* --- QUESTION CARDS --- */
     .question-card {
-      background: var(--card-bg); margin-bottom: 15px; padding: 20px; border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #eee;
+      background: var(--card-bg);
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid #e0e0e0;
+      transition: transform 0.2s ease, border-color 0.2s;
     }
-    .question-text { font-weight: 600; margin-bottom: 15px; color: #2c3e50; }
-    .options-grid { display: grid; gap: 10px; }
+    .question-card:hover {
+      border-color: var(--primary-light);
+    }
+
+    /* Efek Error saat Validasi Gagal */
+    .question-card.error-highlight {
+      border: 2px solid var(--danger-color);
+      background-color: #fff5f5;
+      animation: shake 0.5s;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #2c3e50;
+      font-size: 16px;
+    }
+
+    .options-grid {
+      display: grid;
+      gap: 10px;
+    }
 
     .option-label {
-      display: flex; align-items: center; padding: 10px 15px; border: 1px solid #ddd;
-      border-radius: 8px; cursor: pointer; transition: 0.2s;
+      display: flex;
+      align-items: center;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
     }
-    .option-label:hover { background: #f9f9f9; border-color: var(--primary-light); }
+
+    .option-label:hover {
+      background: #f9f9f9;
+      border-color: var(--primary-light);
+    }
     
     .option-label input[type="radio"] {
-      appearance: none; width: 18px; height: 18px; border: 2px solid #aaa; border-radius: 50%;
-      margin-right: 12px; outline: none; position: relative;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #aaa;
+      border-radius: 50%;
+      margin-right: 15px;
+      outline: none;
+      position: relative;
+      flex-shrink: 0;
     }
-    .option-label input[type="radio"]:checked { border-color: var(--primary-color); }
+
+    .option-label input[type="radio"]:checked {
+      border-color: var(--primary-color);
+    }
+
     .option-label input[type="radio"]:checked::after {
-      content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%;
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px; height: 10px;
+      background: var(--primary-color);
+      border-radius: 50%;
     }
 
-    /* Feedback Colors */
-    .option-label.correct { background-color: #d4edda !important; border-color: #28a745 !important; color: #155724; }
-    .option-label.wrong { background-color: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
-    .option-label.dimmed { opacity: 0.5; }
+    /* Feedback Styles */
+    .option-label.correct {
+      background-color: #d4edda !important;
+      border-color: var(--success-color) !important;
+      color: #155724;
+      font-weight: 500;
+    }
+    .option-label.correct::after {
+      content: ' ✓ Benar';
+      position: absolute;
+      right: 15px;
+      font-weight: bold;
+    }
 
-    /* --- BUTTONS --- */
-    .action-buttons { display: flex; justify-content: center; gap: 15px; margin: 40px 0; flex-wrap: wrap; }
+    .option-label.wrong {
+      background-color: #f8d7da !important;
+      border-color: var(--danger-color) !important;
+      color: #721c24;
+    }
+    .option-label.wrong::after {
+      content: ' ✗ Salah';
+      position: absolute;
+      right: 15px;
+      font-weight: bold;
+    }
+
+    .option-label.dimmed {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* --- ACTION BUTTONS --- */
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+
     .btn {
-      padding: 12px 30px; font-size: 16px; font-weight: bold; border: none; 
-      cursor: pointer; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-      display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+      padding: 14px 35px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
     }
-    .btn-primary { background: var(--primary-color); color: white; }
+
+    .btn-primary {
+      background: var(--primary-color);
+      color: white;
+    }
     .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
     
     .btn-whatsapp { 
-      background: var(--wa-color); color: white; display: none; 
+      background: var(--wa-color); 
+      color: white; 
+      display: none; 
     }
     .btn-whatsapp:hover { background: #1ebe57; transform: translateY(-2px); }
 
-    .btn-reset { background: white; color: var(--primary-color); border: 2px solid var(--primary-color); display: none; }
+    .btn-reset { 
+      background: white; 
+      color: var(--primary-color); 
+      border: 2px solid var(--primary-color); 
+      display: none; 
+    }
     .btn-reset:hover { background: #f1f8e9; }
 
-    /* Result Section di Web */
+    /* --- RESULT SECTION --- */
     #result-section {
-      display: none; text-align: center; margin-top: 30px; padding: 30px; 
-      background: white; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      border-top: 6px solid var(--accent-color);
+      display: none;
+      text-align: center;
+      margin-top: 30px;
+      padding: 40px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-top: 8px solid var(--accent-color);
+      animation: fadeIn 0.5s ease-in-out;
     }
-    .score-display { font-size: 48px; font-weight: 800; color: var(--primary-color); margin: 10px 0; }
-    .grade-badge { display: inline-block; padding: 5px 15px; border-radius: 20px; font-weight: bold; color: white; font-size: 14px; margin-bottom: 10px; }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .score-display {
+      font-size: 56px;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 10px 0;
+      line-height: 1;
+    }
+
+    .grade-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      color: white;
+      font-size: 16px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .feedback-text {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+      font-size: 14px;
+      margin-top: 50px;
+      border-top: 1px solid #ddd;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .header { flex-direction: column; text-align: center; padding: 15px; }
+      .logo-box { margin-bottom: 10px; }
+      .btn { width: 100%; justify-content: center; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <div class="header">
-    <!-- Logo Transparan (Tanpa Background Putih) -->
+  <!-- HEADER -->
+  <!-- Logo Updated with provided URL -->
+  <header class="header">
     <div class="logo-box">
-      <img src="https://z-cdn-media.chatglm.cn/files/56e90a19-085a-42bd-b085-dc0377e4104a.png?auth_key=1870629051-f1a20879f4e24714b010d99fedb74bbe-0-52bc6c2bfa5d1611e30f06b91dbf46d3" alt="Logo Sekolah">
+      <img src="https://z-cdn-media.chatglm.cn/files/5e458b2f-a2f9-4785-9480-10bb908f065b.png?auth_key=1870716478-5459edfa4480475db8a989d53dbeccb8-0-c0ab1cb154f721dcadc8f6af10f41448" alt="Logo Sapta Dwija Artam">
     </div>
     <div class="title">
       <h2>SMPK Frateran Ndao-Ende</h2>
-      <p>Latihan Soal IPA Kelas VIII</p>
+      <p>Latihan Soal Ilmu Pengetahuan Alam (IPA)</p>
     </div>
-  </div>
+  </header>
 
   <div class="container">
+    <!-- Info Siswa -->
     <div class="student-info">
-      <h1>Latihan Soal IPA</h1>
-      <p>Nama: <strong>Lambertus Adam Lowo Ngole</strong> | Kelas: <strong>VIII</strong></p>
-      <p class="sub-title">(Tingkat Kesulitan Tinggi)</p>
+      <h1>Latihan Soal IPA Kelas VIII</h1>
+      <p>Nama: <strong>Lambertus Adam Lowo Ngole</strong></p>
+      <p>Kelas: <strong>VIII</strong></p>
+      <span class="sub-title">TINGKAT KESULITAN TINGGI</span>
     </div>
 
     <form id="quiz">
-      <!-- SOAL 1-5 -->
+      
+      <!-- SOAL 1-10 (Biologi Sel & Jaringan) -->
       <div class="question-card" id="q1">
         <div class="question-text">1. Perbedaan utama antara sel hewan dan sel tumbuhan terletak pada …</div>
         <div class="options-grid">
@@ -145,17 +364,17 @@
       </div>
 
       <div class="question-card" id="q2">
-        <div class="question-text">2. Organel sel yang berperan sebagai tempat respirasi sel adalah …</div>
+        <div class="question-text">2. Organel sel yang berperan sebagai tempat respirasi sel (pembangkit energi) adalah …</div>
         <div class="options-grid">
           <label class="option-label"><input type="radio" name="q2" value="A"> Ribosom</label>
           <label class="option-label"><input type="radio" name="q2" value="B"> Mitokondria</label>
           <label class="option-label"><input type="radio" name="q2" value="C"> Lisosom</label>
-          <label class="option-label"><input type="radio" name="q2" value="D"> Retikulum endoplasma</label>
+          <label class="option-label"><input type="radio" name="q2" value="D"> Badan Golgi</label>
         </div>
       </div>
 
       <div class="question-card" id="q3">
-        <div class="question-text">3. Jaringan yang berfungsi mengangkut hasil fotosintesis pada tumbuhan adalah …</div>
+        <div class="question-text">3. Jaringan yang berfungsi mengangkut hasil fotosintesis (makanan) dari daun ke seluruh tubuh tumbuhan adalah …</div>
         <div class="options-grid">
           <label class="option-label"><input type="radio" name="q3" value="A"> Xilem</label>
           <label class="option-label"><input type="radio" name="q3" value="B"> Floem</label>
@@ -167,183 +386,613 @@
       <div class="question-card" id="q4">
         <div class="question-text">4. Sistem pernapasan manusia terganggu apabila alveolus rusak karena …</div>
         <div class="options-grid">
-          <label class="option-label"><input type="radio" name="q4" value="A"> Difusi oksigen terhambat</label>
-          <label class="option-label"><input type="radio" name="q4" value="B"> Udara tidak masuk</label>
-          <label class="option-label"><input type="radio" name="q4" value="C"> Diafragma berhenti</label>
-          <label class="option-label"><input type="radio" name="q4" value="D"> Jantung berhenti</label>
+          <label class="option-label"><input type="radio" name="q4" value="A"> Proses difusi oksigen terhambat</label>
+          <label class="option-label"><input type="radio" name="q4" value="B"> Udara tidak masuk ke hidung</label>
+          <label class="option-label"><input type="radio" name="q4" value="C"> Diafragma berhenti bergerak</label>
+          <label class="option-label"><input type="radio" name="q4" value="D"> Jantung berhenti memompa</label>
         </div>
       </div>
 
       <div class="question-card" id="q5">
-        <div class="question-text">5. Darah kaya oksigen dari paru-paru menuju jantung melalui …</div>
+        <div class="question-text">5. Darah kaya oksigen dari paru-paru menuju jantung melalui pembuluh darah …</div>
         <div class="options-grid">
           <label class="option-label"><input type="radio" name="q5" value="A"> Arteri pulmonalis</label>
           <label class="option-label"><input type="radio" name="q5" value="B"> Vena pulmonalis</label>
           <label class="option-label"><input type="radio" name="q5" value="C"> Aorta</label>
-          <label class="option-label"><input type="radio" name="q5" value="D"> Vena kava</label>
+          <label class="option-label"><input type="radio" name="q5" value="D"> Vena kava superior</label>
         </div>
       </div>
 
-      <!-- SOAL 6-50 (Dikonversi dari Loop menjadi Statis) -->
-      <div class="question-card" id="q6"><div class="question-text">6. Proses perubahan zat padat langsung menjadi gas disebut …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q6" value="A"> Sublimasi</label><label class="option-label"><input type="radio" name="q6" value="B"> Menguap</label><label class="option-label"><input type="radio" name="q6" value="C"> Mencair</label><label class="option-label"><input type="radio" name="q6" value="D"> Mengembun</label></div></div>
-      
-      <div class="question-card" id="q7"><div class="question-text">7. Hukum Newton I berkaitan dengan …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q7" value="A"> Kelembaman</label><label class="option-label"><input type="radio" name="q7" value="B"> Percepatan</label><label class="option-label"><input type="radio" name="7" value="C"> Gaya</label><label class="option-label"><input type="radio" name="q7" value="D"> Massa</label></div></div>
-      
-      <div class="question-card" id="q8"><div class="question-text">8. Energi potensial dipengaruhi oleh …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q8" value="A"> Massa</label><label class="option-label"><input type="radio" name="q8" value="B"> Kecepatan</label><label class="option-label"><input type="radio" name="q8" value="C"> Tinggi</label><label class="option-label"><input type="radio" name="q8" value="D"> Bentuk</label></div></div>
-      
-      <div class="question-card" id="q9"><div class="question-text">9. Contoh perubahan kimia adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q9" value="A"> Besi berkarat</label><label class="option-label"><input type="radio" name="q9" value="B"> Air membeku</label><label class="option-label"><input type="radio" name="q9" value="C"> Gula larut</label><label class="option-label"><input type="radio" name="q9" value="D"> Kertas dipotong</label></div></div>
-      
-      <div class="question-card" id="q10"><div class="question-text">10. Tekanan zat cair dipengaruhi oleh …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q10" value="A"> Suhu</label><label class="option-label"><input type="radio" name="q10" value="B"> Tekanan</label><label class="option-label"><input type="radio" name="q10" value="C"> Volume</label><label class="option-label"><input type="radio" name="q10" value="D"> Bentuk</label></div></div>
-      
-      <div class="question-card" id="q11"><div class="question-text">11. Alat optik mata memiliki bagian yang berfungsi seperti lensa cembung yaitu …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q11" value="A"> Kornea</label><label class="option-label"><input type="radio" name="q11" value="B"> Pupil</label><label class="option-label"><input type="radio" name="q11" value="C"> Retina</label><label class="option-label"><input type="radio" name="q11" value="D"> Sklera</label></div></div>
-      
-      <div class="question-card" id="q12"><div class="question-text">12. Pemantulan cahaya teratur terjadi pada permukaan …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q12" value="A"> Halus</label><label class="option-label"><input type="radio" name="q12" value="B"> Kasar</label><label class="option-label"><input type="radio" name="q12" value="C"> Licin</label><label class="option-label"><input type="radio" name="q12" value="D"> Renceng</label></div></div>
-      
-      <div class="question-card" id="q13"><div class="question-text">13. Perubahan wujud yang melepaskan kalor adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q13" value="A"> Pemisahan</label><label class="option-label"><input type="radio" name="q13" value="B"> Kondensasi</label><label class="option-label"><input type="radio" name="q13" value="C"> Evaporasi</label><label class="option-label"><input type="radio" name="q13" value="D"> Sublimasi</label></div></div>
-      
-      <div class="question-card" id="q14"><div class="question-text">14. Frekuensi gelombang berbanding terbalik dengan …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q14" value="A"> Amplitudo</label><label class="option-label"><input type="radio" name="q14" value="B"> Periode</label><label class="option-label"><input type="radio" name="q14" value="C"> Cepat rambat</label><label class="option-label"><input type="radio" name="q14" value="D"> Panjang gelombang</label></div></div>
-      
-      <div class="question-card" id="q15"><div class="question-text">15. Satuan daya listrik adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q15" value="A"> Watt</label><label class="option-label"><input type="radio" name="q15" value="B"> Volt</label><label class="option-label"><input type="radio" name="q15" value="C"> Ampere</label><label class="option-label"><input type="radio" name="q15" value="D"> Ohm</label></div></div>
-      
-      <div class="question-card" id="q16"><div class="question-text">16. Zat aditif yang berfungsi sebagai pengawet adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q16" value="A"> Natrium benzoat</label><label class="option-label"><input type="radio" name="q16" value="B"> Kurkumin</label><label class="option-label"><input type="radio" name="q16" value="C"> Klorofil</label><label class="option-label"><input type="radio" name="q16" value="D"> Air</label></div></div>
-      
-      <div class="question-card" id="q17"><div class="question-text">17. Enzim ptialin bekerja pada …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q17" value="A"> Mulut</label><label class="option-label"><input type="radio" name="q17" value="B"> Lambung</label><label class="option-label"><input type="radio" name="q17" value="C"> Usus halus</label><label class="option-label"><input type="radio" name="q17" value="D"> Usus besar</label></div></div>
-      
-      <div class="question-card" id="q18"><div class="question-text">18. Peredaran darah kecil dimulai dari …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q18" value="A"> Bilik kanan</label><label class="option-label"><input type="radio" name="q18" value="B"> Serambi kanan</label><label class="option-label"><input type="radio" name="q18" value="C"> Bilik kiri</label><label class="option-label"><input type="radio" name="q18" value="D"> Serambi kiri</label></div></div>
-      
-      <div class="question-card" id="q19"><div class="question-text">19. Fotosintesis menghasilkan zat …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q19" value="A"> Glukosa</label><label class="option-label"><input type="radio" name="q19" value="B"> Oksigen</label><label class="option-label"><input type="radio" name="q19" value="C"> Karbon dioksida</label><label class="option-label"><input type="radio" name="q19" value="D"> Air</label></div></div>
-      
-      <div class="question-card" id="q20"><div class="question-text">20. Gangguan tulang akibat kekurangan vitamin D disebut …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q20" value="A"> Rakitis</label><label class="option-label"><input type="radio" name="q20" value="B"> Skoliosis</label><label class="option-label"><input type="radio" name="q20" value="C"> Lordosis</label><label class="option-label"><input type="radio" name="q20" value="D"> Kifosis</label></div></div>
-      
-      <div class="question-card" id="q21"><div class="question-text">21. Peristiwa naiknya air ke daun melalui xilem disebut …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q21" value="A"> Absorpsi</label><label class="option-label"><input type="radio" name="q21" value="B"> Transpirasi</label><label class="option-label"><input type="radio" name="q21" value="C"> Plasmolisis</label><label class="option-label"><input type="radio" name="q21" value="D"> Transpirasi</label></div></div>
-      
-      <div class="question-card" id="q22"><div class="question-text">22. Bunyi dapat terdengar karena …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q22" value="A"> Getaran</label><label class="option-label"><input type="radio" name="q22" value="B"> Medium</label><label class="option-label"><input type="radio" name="q22" value="C"> Amplitudo</label><label class="option-label"><input type="radio" name="q22" value="D"> Frekuensi</label></div></div>
-      
-      <div class="question-card" id="q23"><div class="question-text">23. Sumber energi alternatif yang ramah lingkungan adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q23" value="A"> Batu bara</label><label class="option-label"><input type="radio" name="q23" value="B"> Minyak bumi</label><label class="option-label"><input type="radio" name="q23" value="C"> Gas alam</label><label class="option-label"><input type="radio" name="q23" value="D"> Air</label></div></div>
-      
-      <div class="question-card" id="q24"><div class="question-text">24. Zat yang tidak dapat diuraikan lagi disebut …</div><div class="options-grid"><label class="option-label"><input type="url" name="q24" value="A"> Unsur</label><label class="option-label"><input type="radio" name="q24" value="B"> Senyawa</label><label class="option-label"><input type="radio" name="q24" value="C"> Campuran</label><label class="option-label"><input type="radio" name="q24" value="D"> Larutan</label></div></div>
-      
-      <div class="question-card" id="q25"><div class="question-text">25. Perubahan kecepatan tiap satuan waktu disebut …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q25" value="A"> Percepatan</label><label class="option-label"><input type="radio" name="q25" value="B"> Kecepatan</label><label class="option-label"><input type="radio" name="q25" value="C"> Gaya</label><label class="option-label"><input type="radio" name="q25" value="D"> Usaha</label></div></div>
-      
-      <div class="question-card" id="q26"><div class="question-text">26. Alat ukur arus listrik adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q26" value="A"> Amperemeter</label><label class="option-label"><input type="radio" name="q26" value="B"> Voltmeter</label><label class="option-label"><input type="radio" name="q26" value="C"> Ohmmeter</label><label class="option-label"><input type="radio" name="q26" value="D"> Termometer</label></div></div>
-      
-      <div class="question-card" id="q27"><div class="question-text">27. Keseimbangan ekosistem terganggu jika …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q27" value="A"> Bilik kanan</label><label class="option-label"><input type=" radio" name="q27" value="B"> Serambi kanan</label><label class="option-label"><input type="radio" name="q27" value="C"> Produsen banyak</label><label class="option-label"><input type="radio" name="q27" value="D"> Energi cukup</label></div></div>
-      
-      <div class="question-card" id="q28"><div class="question-text">28. Hewan pemakan tumbuhan disebut …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q28" value="A"> Herbivora</label><label class="option-label"><input type="radio" name="q28" value="B"> Karnivora</label><label class="option-label"><input type="radio" name="q28" value="C"> Omnivora</label><label class="option-label"><input type="radio" name="q28" value="D"> Detritivora</label></div></div>
-      
-      <div class="question-card" id="q29"><div class="question-text">29. Reaksi pembakaran memerlukan …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q29" value="A"> Oksigen</label><label class="option-label"><input type="radio" name="q29" value="B"> Unsur</label><label class="option-label"><input type="radio" name="q29" value="C"> Kalor</label><label class="option-label"><input type="radio" name="q29" value="D"> Energi panas</label></div></div>
-      
-      <div class="question-card" id="q30"><div class="question-text">30. Satuan kuat arus listrik adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q30" value="A"> Watt</label><label class="option-label"><input type="radio" name="q30" value="B"> Volt</label><label class="option-label"><input type="radio" name="q30" value="C"> Ampere</label><label class="option-label"><input type="radio" name="q30" value="D"> Ohm</label></div></div>
-      
-      <div class="question-card" id="q31"><div class="question-text">31. Contoh adaptasi morfologi adalah …</div><div class="text-options-grid"><label class="option-label"><input type="radio" name="q31" value="A"> Bentuk paruh burung</label><label class="option-label"><input type="url" name="q31" value="B"> Migrasi burung</label><label class="option-label"><input type="radio" name="q31" value="C"> Mimikri</label><label class="option-label"><input type="radio" name="q31" value="D"> Berkeringat</label></div></div>
-      
-      <div class="question-card" id="q32"><div class="question-text">32. Zat pencemar udara utama dari kendaraan adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q32" value="A"> CO</label><label class="option-label"><input type="radio" name="32" value="B"> NOx</label><label class="option-label"><input type="radio" name="q32" value="C"> SO2</label><label class="option-label"><input type="radio" name="q32" value="D"> PM 2.5</label></div></div>
-      
-      <div class="question-card" id="q33"><div class="question-text">33. Energi kinetik bergantung pada …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q33" value="A"> Massa</label><label class="option-label"><input type="radio" name="q33" value="B"> Kecepatan</label><label class="option-label"><input type="radio" name="q33" value="C"> Ketinggian</label><label class="option-label"><input type="radio" name="q33" value="D"> Usaha</label></div></div>
-      
-      <div class="question-card" id="q34"><div class="question-text">34. Fungsi stomata pada daun adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q34" value="A"> Membuat makanan</label><label class="option-label"><input type="radio" name="q34" value="B"> Mengangkut transportasi</label><label class="option-label"><input type="radio" name="q34" value="C"> Menguraikan zat</label><label class="option-label"><input type="radio" name="q34" value="D"> Bernapas</label></div></div>
-      
-      <div class="question-card" id="q35"><div class="question-text">35. Hewan berdarah dingin disebut …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q35" value="A"> Poikiloterm</label><label class="option-label"><input type="radio" name="q35" value="B"> Homoioterm</label><label class="option-label"><input type="radio" name="q35" value="C"> Mamalia</label><label class="option-label"><input type="radio" name="q35" value="D"> Aves</label></div></div>
-      
-      <div class="question-card" id="q36"><div class="question-text">36. Larutan basa memiliki pH …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q36" value="A"> 7 (Netral)</label><label class="option-label"><input type="radio" name="q36" value="B"> 9 (Asam)</label><label class="option-label"><input type="radio" name="q36" value="C"> 3 (Asam)</label><label class="option-label"><input type="radio" name="q36" value="D"> 5 (Basah)</label></div></div>
-      
-      <div class="question-card" id="q37"><div class="question-text">37. Sistem rangka berfungsi untuk …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q37" value="A"> Pembentukan kerangka</label><label class="option-label"><input type="radio" name="q37" value="B"> Mengolah makanan</label><label class="option-label"><input type="radio" name="q37" value="C"> Menguraikan zat</label><label class="option-label"><input type="radio" name="q37" value="D"> Memakan konsumen</label></div></div>
-      
-      <div class="question-card" id="q38"><div class="question-text">38. Peristiwa korosi termasuk perubahan …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q38" value="A"> Kimiawi</label><label class="option-label"><input type="radio" name="q38" value="B"> Fisika</label><label class="option-label"><input type="radio" name="q38" value="C"> Biologi</label><label class="option-label"><input type="radio" name="q38" value="D"> Mekanik</label></div></div>
-      
-      <div class="question-card" id="q39"><div class="question-text">39. Alat untuk mengukur tekanan udara adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q39" value="A"> Barometer</label><label class="option-label"><input type="radio" name="q39" value="B"> Termometer</label><label class="option-label"><input type="radio" name="q39" value="c"> Higrometer</label><label class="option-label"><input type="radio" name="q39" value="d"> Anemometer</label></div></div>
-      
-      <div class="question-card" id="q40"><div class="question-text">40. Tujuan utama klasifikasi makhluk hidup adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q40" value="A"> Memudahkan pengenalan</label><label class="option-label"><input type="radio" name="q40" value="B"> Menyulitkan perbedaan</label><label class="option-label"><input type="radio" name="q40" value="C"> Mencegah persamaan</label><label class="option-label"><input type="radio" name="q40" value="D"> Menghilangkan perbedaan</label></div></div>
+      <div class="question-card" id="q6">
+        <div class="question-text">6. Peristiwa naiknya air dan mineral dari tanah ke daun melalui pembuluh xilem disebut …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q6" value="A"> Absorpsi</label>
+          <label class="option-label"><input type="radio" name="q6" value="B"> Transpirasi</label>
+          <label class="option-label"><input type="radio" name="q6" value="C"> Gutasi</label>
+          <label class="option-label"><input type="radio" name="q6" value="D"> Evaporasi</label>
+        </div>
+      </div>
 
+      <div class="question-card" id="q7">
+        <div class="question-text">7. Enzim ptialin (amilase) yang berfungsi mencerna pati pertama kali bekerja di …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q7" value="A"> Mulut</label>
+          <label class="option-label"><input type="radio" name="q7" value="B"> Lambung</label>
+          <label class="option-label"><input type="radio" name="q7" value="C"> Usus halus</label>
+          <label class="option-label"><input type="radio" name="q7" value="D"> Usus besar</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q8">
+        <div class="question-text">8. Peredaran darah kecil (peredaran pulmonal) dimulai dari …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q8" value="A"> Bilik kanan</label>
+          <label class="option-label"><input type="radio" name="q8" value="B"> Serambi kanan</label>
+          <label class="option-label"><input type="radio" name="q8" value="C"> Bilik kiri</label>
+          <label class="option-label"><input type="radio" name="q8" value="D"> Serambi kiri</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q9">
+        <div class="question-text">9. Hasil utama fotosintesis selain glukosa adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q9" value="A"> Karbon dioksida</label>
+          <label class="option-label"><input type="radio" name="q9" value="B"> Oksigen</label>
+          <label class="option-label"><input type="radio" name="q9" value="C"> Nitrogen</label>
+          <label class="option-label"><input type="radio" name="q9" value="D"> Uap air</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q10">
+        <div class="question-text">10. Gangguan pada tulang akibat kekurangan vitamin D sehingga tulang menjadi lunak disebut …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q10" value="A"> Rakitis</label>
+          <label class="option-label"><input type="radio" name="q10" value="B"> Skoliosis</label>
+          <label class="option-label"><input type="radio" name="q10" value="C"> Lordosis</label>
+          <label class="option-label"><input type="radio" name="q10" value="D"> Kifosis</label>
+        </div>
+      </div>
+
+      <!-- SOAL 11-20 (Fisika & Kimia Dasar) -->
+      <div class="question-card" id="q11">
+        <div class="question-text">11. Proses perubahan zat padat langsung menjadi gas tanpa melalui cair disebut …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q11" value="A"> Sublimasi</label>
+          <label class="option-label"><input type="radio" name="q11" value="B"> Menguap</label>
+          <label class="option-label"><input type="radio" name="q11" value="C"> Mencair</label>
+          <label class="option-label"><input type="radio" name="q11" value="D"> Mengembun</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q12">
+        <div class="question-text">12. Hukum Newton I tentang inersia menyatakan bahwa benda akan tetap diam jika …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q12" value="A"> Resultan gaya nol</label>
+          <label class="option-label"><input type="radio" name="q12" value="B"> Kecepatan bertambah</label>
+          <label class="option-label"><input type="radio" name="q12" value="C"> Ada gaya gesek</label>
+          <label class="option-label"><input type="radio" name="q12" value="D"> Massa berubah</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q13">
+        <div class="question-text">13. Energi potensial yang dimiliki benda sangat dipengaruhi oleh …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q13" value="A"> Massa dan kecepatan</label>
+          <label class="option-label"><input type="radio" name="q13" value="B"> Massa dan ketinggian</label>
+          <label class="option-label"><input type="radio" name="q13" value="C"> Kecepatan dan percepatan</label>
+          <label class="option-label"><input type="radio" name="q13" value="D"> Volume dan suhu</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q14">
+        <div class="question-text">14. Di bawah ini yang termasuk perubahan kimia adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q14" value="A"> Besi berkarat</label>
+          <label class="option-label"><input type="radio" name="q14" value="B"> Air membeku menjadi es</label>
+          <label class="option-label"><input type="radio" name="q14" value="C"> Gula larut dalam air</label>
+          <label class="option-label"><input type="radio" name="q14" value="D"> Kertas dipotong</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q15">
+        <div class="question-text">15. Tekanan zat cair (<i>P = ρ.g.h</i>) menunjukkan bahwa tekanan berbanding lurus dengan …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q15" value="A"> Suhu zat</label>
+          <label class="option-label"><input type="radio" name="q15" value="B"> Volume zat</label>
+          <label class="option-label"><input type="radio" name="q15" value="C"> Kedalaman zat</label>
+          <label class="option-label"><input type="radio" name="q15" value="D"> Luas penampang</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q16">
+        <div class="question-text">16. Alat optik pada mata yang berfungsi mengatur cahaya masuk adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q16" value="A"> Kornea</label>
+          <label class="option-label"><input type="radio" name="q16" value="B"> Pupil</label>
+          <label class="option-label"><input type="radio" name="q16" value="C"> Retina</label>
+          <label class="option-label"><input type="radio" name="q16" value="D"> Lensa mata</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q17">
+        <div class="question-text">17. Pemantulan cahaya yang teratur pada permukaan datar menghasilkan …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q17" value="A"> Bayangan tegak</label>
+          <label class="option-label"><input type="radio" name="q17" value="B"> Cahaya menyebar</label>
+          <label class="option-label"><input type="radio" name="q17" value="C"> Pantulan baur</label>
+          <label class="option-label"><input type="radio" name="q17" value="D"> Absorpsi sempurna</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q18">
+        <div class="question-text">18. Perubahan wujud zat yang melepaskan kalor (eksoterm) adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q18" value="A"> Mencair dan Menguap</label>
+          <label class="option-label"><input type="radio" name="q18" value="B"> Membeku dan Mengkondensasi</label>
+          <label class="option-label"><input type="radio" name="q18" value="C"> Sublimasi</label>
+          <label class="option-label"><input type="radio" name="q18" value="D"> Evaporasi</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q19">
+        <div class="question-text">19. Frekuensi getaran memiliki hubungan terbalik dengan …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q19" value="A"> Amplitudo</label>
+          <label class="option-label"><input type="radio" name="q19" value="B"> Periode</label>
+          <label class="option-label"><input type="radio" name="q19" value="C"> Cepat rambat</label>
+          <label class="option-label"><input type="radio" name="q19" value="D"> Panjang gelombang</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q20">
+        <div class="question-text">20. Satuan SI untuk daya listrik adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q20" value="A"> Watt</label>
+          <label class="option-label"><input type="radio" name="q20" value="B"> Volt</label>
+          <label class="option-label"><input type="radio" name="q20" value="C"> Ampere</label>
+          <label class="option-label"><input type="radio" name="q20" value="D"> Ohm</label>
+        </div>
+      </div>
+
+      <!-- SOAL 21-30 (Zat Aditif & Sistem Tubuh) -->
+      <div class="question-card" id="q21">
+        <div class="question-text">21. Zat aditif pada makanan yang berfungsi untuk menjaga kesegaran dan mencegah busuk adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q21" value="A"> Natrium benzoat</label>
+          <label class="option-label"><input type="radio" name="q21" value="B"> Asam sitrat</label>
+          <label class="option-label"><input type="radio" name="q21" value="C"> Pewarna sintetis</label>
+          <label class="option-label"><input type="radio" name="q21" value="D"> Pemanis buatan</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q22">
+        <div class="question-text">22. Bunyi dapat terdengar oleh telinga manusia karena adanya …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q22" value="A"> Getaran medium</label>
+          <label class="option-label"><input type="radio" name="q22" value="B"> Cahaya pantul</label>
+          <label class="option-label"><input type="radio" name="q22" value="C"> Hambatan udara</label>
+          <label class="option-label"><input type="radio" name="q22" value="D"> Frekuensi tinggi</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q23">
+        <div class="question-text">23. Sumber energi alternatif yang memanfaatkan panas bumi disebut …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q23" value="A"> Geothermal</label>
+          <label class="option-label"><input type="radio" name="q23" value="B"> Biomassa</label>
+          <label class="option-label"><input type="radio" name="q23" value="C"> Hidroelektrik</label>
+          <label class="option-label"><input type="radio" name="q23" value="D"> Fotovoltaik</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q24">
+        <div class="question-text">24. Zat tunggal yang tidak dapat diuraikan lagi menjadi zat lain yang lebih sederhana dengan reaksi kimia biasa disebut …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q24" value="A"> Unsur</label>
+          <label class="option-label"><input type="radio" name="q24" value="B"> Senyawa</label>
+          <label class="option-label"><input type="radio" name="q24" value="C"> Campuran</label>
+          <label class="option-label"><input type="radio" name="q24" value="C"> Larutan</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q25">
+        <div class="question-text">25. Besaran yang menunjukkan seberapa cepat kecepatan berubah tiap satuan waktu disebut …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q25" value="A"> Percepatan</label>
+          <label class="option-label"><input type="radio" name="q25" value="B"> Kecepatan</label>
+          <label class="option-label"><input type="radio" name="q25" value="C"> Gaya</label>
+          <label class="option-label"><input type="radio" name="q25" value="D"> Momentum</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q26">
+        <div class="question-text">26. Alat ukur yang digunakan untuk mengukur kuat arus listrik adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q26" value="A"> Amperemeter</label>
+          <label class="option-label"><input type="radio" name="q26" value="B"> Voltmeter</label>
+          <label class="option-label"><input type="radio" name="q26" value="C"> Ohmmeter</label>
+          <label class="option-label"><input type="radio" name="q26" value="D"> Termometer</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q27">
+        <div class="question-text">27. Keseimbangan ekosistem akan terganggu jika …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q27" value="A"> Jumlah konsumen II melebihi produsen</label>
+          <label class="option-label"><input type="radio" name="q27" value="B"> Populasi produsen sangat banyak</label>
+          <label class="option-label"><input type="radio" name="q27" value="C"> Tidak ada decomposer</label>
+          <label class="option-label"><input type="radio" name="q27" value="D"> Energi matahari berlebih</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q28">
+        <div class="question-text">28. Hewan pemakan tumbuhan (herbivora) memiliki gigi geraham yang berkembang baik untuk berfungsi …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q28" value="A"> Mengunyah dan menghaluskan makanan</label>
+          <label class="option-label"><input type="radio" name="q28" value="B"> Mencabik daging mangsa</label>
+          <label class="option-label"><input type="radio" name="q28" value="C"> Menusuk dan memegang mangsa</label>
+          <label class="option-label"><input type="radio" name="q28" value="D"> Mematikan serangga</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q29">
+        <div class="question-text">29. Reaksi pembakaran merupakan reaksi yang bersifat …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q29" value="A"> Eksoterm (melepas kalor)</label>
+          <label class="option-label"><input type="radio" name="q29" value="B"> Endoterm (menyerap kalor)</label>
+          <label class="option-label"><input type="radio" name="q29" value="C"> Netral</label>
+          <label class="option-label"><input type="radio" name="q29" value="D"> Reduksi</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q30">
+        <div class="question-text">30. Satuan SI untuk kuat arus listrik adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q30" value="A"> Ampere</label>
+          <label class="option-label"><input type="radio" name="q30" value="B"> Volt</label>
+          <label class="option-label"><input type="radio" name="q30" value="C"> Watt</label>
+          <label class="option-label"><input type="radio" name="q30" value="D"> Coulomb</label>
+        </div>
+      </div>
+
+      <!-- SOAL 31-40 (Biologi Lanjut & Fisika) -->
+      <div class="question-card" id="q31">
+        <div class="question-text">31. Contoh adaptasi morfologi pada burung pemakan ikan adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q31" value="A"> Bentuk paruh panjang dan runcing</label>
+          <label class="option-label"><input type="radio" name="q31" value="B"> Kemampuan terbang tinggi</label>
+          <label class="option-label"><input type="radio" name="q31" value="C"> Mengeluarkan bau menyengat</label>
+          <label class="option-label"><input type="radio" name="q31" value="D"> Berubah warna kulit</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q32">
+        <div class="question-text">32. Zat pencemar udara utama yang dihasilkan dari pembakaran bahan bakar kendaraan bermotor adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q32" value="A"> Karbon Monoksida (CO)</label>
+          <label class="option-label"><input type="radio" name="q32" value="B"> Oksigen (O2)</label>
+          <label class="option-label"><input type="radio" name="q32" value="C"> Nitrogen (N2)</label>
+          <label class="option-label"><input type="radio" name="q32" value="D"> Argon (Ar)</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q33">
+        <div class="question-text">33. Rumus energi kinetik (<i>E<sub>k</sub></i>) ditentukan oleh besaran …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q33" value="A"> 1/2 m.v<sup>2</sup></label>
+          <label class="option-label"><input type="radio" name="q33" value="B"> m.g.h</label>
+          <label class="option-label"><input type="radio" name="q33" value="C"> F.s</label>
+          <label class="option-label"><input type="radio" name="q33" value="D"> W/t</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q34">
+        <div class="question-text">34. Fungsi utama stomata pada daun selain untuk pertukaran gas adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q34" value="A"> Tempat berlangsungnya transpirasi</label>
+          <label class="option-label"><input type="radio" name="q34" value="B"> Menyerap cahaya matahari</label>
+          <label class="option-label"><input type="radio" name="q34" value="C"> Mengangkut air</label>
+          <label class="option-label"><input type="radio" name="q34" value="D"> Sintesis protein</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q35">
+        <div class="question-text">35. Hewan berdarah dingin (suhu tubuh mengikuti lingkungan) disebut …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q35" value="A"> Poikiloterm</label>
+          <label class="option-label"><input type="radio" name="q35" value="B"> Homoioterm</label>
+          <label class="option-label"><input type="radio" name="q35" value="C"> Endoterm</label>
+          <label class="option-label"><input type="radio" name="q35" value="D"> Vivipar</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q36">
+        <div class="question-text">36. Ciri larutan basa adalah memiliki pH …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q36" value="A"> Lebih besar dari 7</label>
+          <label class="option-label"><input type="radio" name="q36" value="B"> Sama dengan 7</label>
+          <label class="option-label"><input type="radio" name="q36" value="C"> Lebih kecil dari 7</label>
+          <label class="option-label"><input type="radio" name="q36" value="D"> Netral</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q37">
+        <div class="question-text">37. Fungsi utama sistem rangka pada manusia adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q37" value="A"> Sebagai tempat melekatnya otot dan pelindung organ</label>
+          <label class="option-label"><input type="radio" name="q37" value="B"> Mengolah sari-sari makanan</label>
+          <label class="option-label"><input type="radio" name="q37" value="C"> Mengangkut oksigen</label>
+          <label class="option-label"><input type="radio" name="q37" value="D"> Mengedarkan darah</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q38">
+        <div class="question-text">38. Peristiwa karat pada besi termasuk perubahan …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q38" value="A"> Kimia</label>
+          <label class="option-label"><input type="radio" name="q38" value="B"> Fisika</label>
+          <label class="option-label"><input type="radio" name="q38" value="C"> Biologi</label>
+          <label class="option-label"><input type="radio" name="q38" value="D"> Mekanik</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q39">
+        <div class="question-text">39. Alat untuk mengukur tekanan udara atmosfer disebut …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q39" value="A"> Barometer</label>
+          <label class="option-label"><input type="radio" name="q39" value="B"> Termometer</label>
+          <label class="option-label"><input type="radio" name="q39" value="C"> Higrometer</label>
+          <label class="option-label"><input type="radio" name="q39" value="D"> Anemometer</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q40">
+        <div class="question-text">40. Tujuan utama manusia melakukan klasifikasi makhluk hidup adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q40" value="A"> Memudahkan studi dan pengenalan</label>
+          <label class="option-label"><input type="radio" name="q40" value="B"> Memperbanyak jumlah spesies</label>
+          <label class="option-label"><input type="radio" name="q40" value="C"> Menghilangkan perbedaan ciri</label>
+          <label class="option-label"><input type="radio" name="q40" value="D"> Menciptakan makhluk hidup baru</label>
+        </div>
+      </div>
+
+      <!-- SOAL 41-50 (Soal Tambahan Tingkat Tinggi) -->
+      <div class="question-card" id="q41">
+        <div class="question-text">41. Pada pesawat sederhana tuas jenis ketiga (pengungkit), letak titik beban, kuasa, dan tumpuan berturut-turut adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q41" value="A"> Tumpuan - Beban - Kuasa</label>
+          <label class="option-label"><input type="radio" name="q41" value="B"> Beban - Tumpuan - Kuasa</label>
+          <label class="option-label"><input type="radio" name="q41" value="C"> Kuasa - Tumpuan - Beban</label>
+          <label class="option-label"><input type="radio" name="q41" value="D"> Tumpuan - Kuasa - Beban</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q42">
+        <div class="question-text">42. Cahaya merambat lurus, tetapi dapat berbelok arah saat melewati medium dengan kerapatan berbeda. Peristiwa ini disebut …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q42" value="A"> Refraksi (Pembiasan)</label>
+          <label class="option-label"><input type="radio" name="q42" value="B"> Refleksi (Pemantulan)</label>
+          <label class="option-label"><input type="radio" name="q42" value="C"> Difusi</label>
+          <label class="option-label"><input type="radio" name="q42" value="D"> Dispersi</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q43">
+        <div class="question-text">43. Bioteknologi konvensional yang memanfaatkan bakteri <i>Acetobacter</i> dalam pembuatannya adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q43" value="A"> Nata de coco</label>
+          <label class="option-label"><input type="radio" name="q43" value="B"> Tempe</label>
+          <label class="option-label"><input type="radio" name="q43" value="C"> Yoghurt</label>
+          <label class="option-label"><input type="radio" name="q43" value="D"> Oncom</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q44">
+        <div class="question-text">44. Unit fungsional terkecil pada sistem ekskresi ginjal yang berfungsi menyaring darah adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q44" value="A"> Nefron</label>
+          <label class="option-label"><input type="radio" name="q44" value="B"> Ureter</label>
+          <label class="option-label"><input type="radio" name="q44" value="C"> Kandung kemih</label>
+          <label class="option-label"><input type="radio" name="q44" value="D"> Uretra</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q45">
+        <div class="question-text">45. Jika massa benda diperbesar 2 kali dan percepatannya diperbesar 2 kali, maka gaya yang bekerja pada benda tersebut akan …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q45" value="A"> Menjadi 4 kali semula</label>
+          <label class="option-label"><input type="radio" name="q45" value="B"> Menjadi 2 kali semula</label>
+          <label class="option-label"><input type="radio" name="q45" value="C"> Tetap</label>
+          <label class="option-label"><input type="radio" name="q45" value="D"> Menjadi 8 kali semula</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q46">
+        <div class="question-text">46. Perhatikan data campuran berikut: (1) Air garam, (2) Air minyak, (3) Pasir dan air, (4) Udara. Campuran heterogen adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q46" value="A"> (2) dan (3)</label>
+          <label class="option-label"><input type="radio" name="q46" value="B"> (1) dan (4)</label>
+          <label class="option-label"><input type="radio" name="q46" value="C"> (1) dan (3)</label>
+          <label class="option-label"><input type="radio" name="q46" value="D"> Semua benar</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q47">
+        <div class="question-text">47. Perubahan energi listrik menjadi energi gerak (mekanik) sangat terlihat pada alat …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q47" value="A"> Kipas angin</label>
+          <label class="option-label"><input type="radio" name="q47" value="B"> Setrika</label>
+          <label class="option-label"><input type="radio" name="q47" value="C"> Lampu pijar</label>
+          <label class="option-label"><input type="radio" name="q47" value="D"> Radio</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q48">
+        <div class="question-text">48. Gerak revolusi bumi mengakibatkan …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q48" value="A"> Terjadinya pergantian musim</label>
+          <label class="option-label"><input type="radio" name="q48" value="B"> Siang dan malam</label>
+          <label class="option-label"><input type="radio" name="q48" value="C"> Gerak semu harian matahari</label>
+          <label class="option-label"><input type="radio" name="q48" value="D"> Pasang surut air laut</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q49">
+        <div class="question-text">49. Tekanan hidrostatis pada suatu titik di dalam fluida tidak bergantung pada …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q49" value="A"> Massa jenis fluida</label>
+          <label class="option-label"><input type="radio" name="q49" value="B"> Percepatan gravitasi</label>
+          <label class="option-label"><input type="radio" name="q49" value="C"> Kedalaman titik dari permukaan</label>
+          <label class="option-label"><input type="radio" name="q49" value="D"> Volume wadah penampung</label>
+        </div>
+      </div>
+
+      <div class="question-card" id="q50">
+        <div class="question-text">50. Salah satu dampak negatif penggunaan zat aditif berlebihan seperti pewarna sintetis (misal: Metanil Yellow) adalah …</div>
+        <div class="options-grid">
+          <label class="option-label"><input type="radio" name="q50" value="A"> Dapat mengganggu fungsi hati dan kanker</label>
+          <label class="option-label"><input type="radio" name="q50" value="B"> Meningkatkan nafsu makan</label>
+          <label class="option-label"><input type="radio" name="q50" value="C"> Menyehatkan pencernaan</label>
+          <label class="option-label"><input type="radio" name="q50" value="D"> Mencegah bakteri tumbuh</label>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
       <div class="action-buttons">
-        <button type="button" class="btn btn-primary" id="submitBtn" onclick="checkAnswers()">Lihat Nilai</button>
+        <button type="button" class="btn btn-primary" id="submitBtn" onclick="checkAnswers()">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Lihat Nilai
+        </button>
         
-        <!-- Tombol WhatsApp -->
         <a href="#" target="_blank" id="waBtn" class="btn btn-whatsapp">
           <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
           Kirim Hasil ke WhatsApp
         </a>
 
-        <button type="button" class="btn btn-reset" id="resetBtn" onclick="resetQuiz()">Ulangi Latihan</button>
+        <button type="button" class="btn btn-reset" id="resetBtn" onclick="resetQuiz()">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          Ulangi Latihan
+        </button>
       </div>
     </form>
 
-    <!-- Hasil di Web -->
+    <!-- Hasil Section -->
     <div id="result-section">
-      <h3>Hasil Latihan Soal IPA</h3>
-      <div class="grade-badge" id="gradeBadge">-</div>
+      <h2>Hasil Latihan Soal IPA</h2>
+      <div class="grade-badge" id="gradeBadge">MENUNGGU</div>
       <div class="score-display"><span id="scoreVal">0</span> / 100</div>
-      <p id="feedbackText">Terima kasih telah mengerjakan latihan soal.</p>
+      <p class="feedback-text" id="feedbackText">Silakan mengerjakan semua soal terlebih dahulu.</p>
     </div>
   </div>
 
+  <footer>
+    <p>&copy; 2024 SMPK Frateran Ndao-Ende. Media Pembelajaran Digital.</p>
+  </footer>
+
   <script>
+    // KUNCI JAWABAN (50 Soal)
+    // Catatan: Q41 diubah menjadi D (Tuas Jenis 3 = Kuasa di tengah)
+    const kunci = {
+      q1:"B", q2:"B", q3:"B", q4:"A", q5:"B",
+      q6:"A", q7:"A", q8:"A", q9:"B", q10:"A",
+      q11:"A", q12:"A", q13:"B", q14:"A", q15:"C",
+      q16:"B", q17:"A", q18:"B", q19:"B", q20:"A",
+      q21:"A", q22:"A", q23:"A", q24:"A", q25:"A",
+      q26:"A", q27:"C", q28:"A", q29:"A", q30:"A",
+      q31:"A", q32:"A", q33:"A", q34:"A", q35:"A",
+      q36:"A", q37:"A", q38:"A", q39:"A", q40:"A",
+      q41:"D", q42:"A", q43:"A", q44:"A", q45:"A",
+      q46:"A", q47:"A", q48:"A", q49:"D", q50:"A"
+    };
+
     function checkAnswers() {
+      // --- 1. VALIDASI: Cek apakah semua soal terjawab ---
+      let soalKosong = [];
+
+      for (let i = 1; i <= 50; i++) {
+        const checked = document.querySelector(`input[name="q${i}"]:checked`);
+        if (!checked) {
+          soalKosong.push(i);
+        }
+      }
+
+      if (soalKosong.length > 0) {
+        let pesan = "⚠️ PERHATIAN!\n\n";
+        pesan += "Anda belum menjawab semua soal.\n";
+        pesan += "Nomor soal yang belum diisi: " + soalKosong.slice(0, 10).join(", "); 
+        if (soalKosong.length > 10) pesan += ", dan lainnya...";
+        pesan += "\n\nMohon lengkapi semua jawaban sebelum melihat nilai.";
+        
+        alert(pesan);
+        
+        // Scroll otomatis ke soal pertama yang kosong
+        const firstEmptyId = `q${soalKosong[0]}`;
+        const element = document.getElementById(firstEmptyId);
+        if(element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Efek visual merah sebentar
+            element.classList.add('error-highlight');
+            setTimeout(() => {
+                element.classList.remove('error-highlight');
+            }, 2000);
+        }
+        
+        return; // Hentikan fungsi di sini
+      }
+
+      // --- 2. JIKA LOLOS VALIDASI, LANJUT HITUNG NILAI ---
       let score = 0;
       const total = 50;
-      const form = document.getElementById('quiz');
       const questionCards = document.querySelectorAll('.question-card');
       
-      // Kunci Jawaban (Sesuai input user)
-      const kunci = {
-        q1:"B", q2:"B", q3:"B", q4:"A", q5:"B",
-        q6:"A", q7:"A", q8:"B", q9:"A", q10:"A",
-        q11:"A", q12:"A", q13:"A", q14:"B", q15:"A",
-        q16:"A", q17:"A", q18:"A", q19:"A", q20:"A",
-        q21:"D", q22:"A", q23:"A", q24:"A", q25:"A",
-        q26:"A", q27:"A", q28:"A", q29:"A", q30:"D",
-        q31:"A", q32:"A", q33:"B", q34:"A", q35:"A",
-        q36:"D", q37:"A", q38:"A", q39:"A", q40:"A",
-        q41:"A", q42:"A", q43:"A", q44:"A", q45:"A",
-        q46:"A", q47:"A", q48:"A", q49:"A", q50:"A"
-      };
-
       questionCards.forEach((card, index) => {
         const qNum = index + 1;
-        const inputs = card.querySelectorAll('input[type=radio]');
+        const inputs = card.querySelectorAll('input[type="radio"]');
+        
+        // Disable inputs after submit
         inputs.forEach(input => input.disabled = true);
 
-        const selected = card.querySelector('input[type=radio]:checked');
+        const selected = card.querySelector('input[type="radio"]:checked');
         const labels = card.querySelectorAll('.option-label');
-        const correctInput = card.querySelector(`input[type=radio][value="${kunci['q'+qNum]}"]`);
+        const correctVal = kunci['q'+qNum];
+        
+        // Find correct input element
+        const correctInput = card.querySelector(`input[type="radio"][value="${correctVal}"]`);
 
         if (selected) {
-          if (selected.value === kunci['q'+qNum]) {
+          if (selected.value === correctVal) {
             score++;
             selected.parentElement.classList.add('correct');
           } else {
             selected.parentElement.classList.add('wrong');
+            // Dim other wrong options
             labels.forEach(lbl => {
               if(lbl !== selected.parentElement) lbl.classList.add('dimmed');
             });
+            // Highlight correct one
+            if(correctInput) correctInput.parentElement.classList.remove('dimmed');
             if(correctInput) correctInput.parentElement.classList.add('correct');
-          }
-        } else {
-          labels.forEach(lbl => lbl.classList.add('dimmed'));
-          if(correctInput) {
-            correctInput.parentElement.classList.remove('dimmed');
-            correctInput.parentElement.classList.add('correct');
           }
         }
       });
 
-      // Hitung Nilai (Skala 100)
+      // Calculate Score
       const finalScore = Math.round((score * 100) / total);
       document.getElementById('scoreVal').textContent = finalScore;
       
-      // Tentukan Grade
+      // Grade Logic
       let gradeText = '';
       let gradeColor = '';
       let feedback = '';
 
       if (finalScore >= 90) {
-        gradeText = 'A (Sangat Baik)'; gradeColor = '#28a745'; feedback = 'Luar biasa! Analisis dan pemahaman IPA Anda sangat mendalam.';
+        gradeText = 'A (SANGAT BAIK)'; gradeColor = '#28a745'; feedback = 'Luar biasa! Pemahaman IPA Anda sangat mendalam.';
       } else if (finalScore >= 80) {
-        gradeText = 'B (Baik)'; gradeColor = '#17a2b8'; feedback = 'Bagus! Pemahaman sains kamu sudah sangat baik.';
+        gradeText = 'B (BAIK)'; gradeColor = '#17a2b8'; feedback = 'Bagus! Pertahankan prestasimu.';
       } else if (finalScore >= 70) {
-        gradeText = 'C (Cukup)'; gradeColor = '#ffc107'; feedback = 'Cukup baik, tingkatkan lagi latihan analisis teori.';
+        gradeText = 'C (CUKUP)'; gradeColor = '#ffc107'; feedback = 'Cukup baik, tingkatkan lagi belajarnya.';
       } else {
-        gradeText = 'D (Kurang)'; gradeColor = '#dc3545'; feedback = 'Jangan menyerah, ayo pelajari lagi teori IPA secara lebih mendalam.';
+        gradeText = 'D (KURANG)'; gradeColor = '#dc3545'; feedback = 'Jangan menyerah, ayo pelajari lagi materi IPA.';
       }
 
       const gradeBadge = document.getElementById('gradeBadge');
@@ -351,46 +1000,49 @@
       gradeBadge.style.backgroundColor = gradeColor;
       document.getElementById('feedbackText').textContent = feedback;
 
-      // --- LOGIKA WHATSAPP ---
+      // WhatsApp Message Logic
       const namaSiswa = "Lambertus Adam Lowo Ngole";
       const kelasSiswa = "VIII";
       const tanggal = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
       let pesan = `*LAPORAN HASIL LATIHAN IPA*%0A%0A`;
-      pesan += `👤 Nama Siswa: ${namaSiswa}%0A`;
+      pesan += `👤 Nama: ${namaSiswa}%0A`;
       pesan += `🏫 Kelas: ${kelasSiswa}%0A`;
       pesan += `📅 Tanggal: ${tanggal}%0A`;
       pesan += `--------------------------------%0A`;
-      pesan += `🧪 *Nilai Akhir: ${finalScore}*%0A`;
+      pesan += `🧪 *Nilai: ${finalScore} / 100*%0A`;
       pesan += `🏆 Predikat: ${gradeText}%0A`;
       pesan += `--------------------------------%0A`;
-      pesan += `${feedback}%0A%0A`;
-      pesan += `Mohon diperiksa, terima kasih.`;
+      pesan += `Catatan: ${feedback}`;
 
-      // Update Link Tombol WhatsApp
       document.getElementById('waBtn').href = `https://wa.me/?text=${pesan}`;
 
-      // Tampilkan UI
+      // Show UI
       document.getElementById('result-section').style.display = 'block';
       document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
       
       document.getElementById('submitBtn').style.display = 'none';
       document.getElementById('waBtn').style.display = 'inline-flex';
-      document.getElementById('resetBtn').style.display = 'inline-block';
+      document.getElementById('resetBtn').style.display = 'inline-flex';
     }
 
     function resetQuiz() {
       const form = document.getElementById('quiz');
       form.reset();
       
+      // Remove classes
       document.querySelectorAll('.option-label').forEach(el => {
         el.classList.remove('correct', 'wrong', 'dimmed');
       });
       
-      document.querySelectorAll('input[type=radio]').forEach(el => el.disabled = false);
+      // Enable inputs
+      document.querySelectorAll('input[type="radio"]').forEach(el => el.disabled = false);
 
+      // Hide result
       document.getElementById('result-section').style.display = 'none';
-      document.getElementById('submitBtn').style.display = 'inline-block';
+      
+      // Show/Hide Buttons
+      document.getElementById('submitBtn').style.display = 'inline-flex';
       document.getElementById('waBtn').style.display = 'none';
       document.getElementById('resetBtn').style.display = 'none';
       
