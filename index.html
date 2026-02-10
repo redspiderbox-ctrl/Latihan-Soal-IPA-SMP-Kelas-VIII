@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Latihan Soal IPA SMP Kelas VIII</title>
+  <title>Latihan Soal IPA SMP Kelas VIII (Tingkat Tinggi)</title>
   <style>
     :root {
       --primary-color: #1b5e20;
@@ -24,23 +24,20 @@
       line-height: 1.6;
     }
 
-    /* --- HEADER & LOGO --- */
+    /* --- HEADER & LOGO (TANPA BACKGROUND) --- */
     .header {
       display: flex; align-items: center; gap: 20px; padding: 20px 5%;
       background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* Logo Container dengan Background Putih */
+    /* Logo Box - Background Dihapus agar Transparan */
     .logo-box {
-      background-color: #ffffff;
-      border-radius: 50%;
       width: 70px;
       height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      /* Tidak ada background-color, border-radius, box-shadow, padding */
     }
     .logo-box img { width: 100%; height: auto; object-fit: contain; }
 
@@ -54,6 +51,7 @@
       margin-bottom: 25px; text-align: center; border-left: 5px solid var(--accent-color);
     }
     .student-info h1 { margin: 0 0 5px 0; color: var(--primary-color); font-size: 22px; }
+    .student-info .sub-title { font-size: 14px; color: #666; font-weight: normal; margin-top: 5px; font-style: italic; }
 
     /* --- SOAL --- */
     .question-card {
@@ -87,17 +85,15 @@
     /* --- BUTTONS --- */
     .action-buttons { display: flex; justify-content: center; gap: 15px; margin: 40px 0; flex-wrap: wrap; }
     .btn {
-      padding: 12px 30px; font-size: 16px; font-weight: bold; border: none; border-radius: 30px;
-      cursor: pointer; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: inline-flex; align-items: center; gap: 10px;
-      text-decoration: none;
+      padding: 12px 30px; font-size: 16px; font-weight: bold; border: none; 
+      cursor: pointer; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+      display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
     }
     .btn-primary { background: var(--primary-color); color: white; }
     .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
     
     .btn-whatsapp { 
-      background: var(--wa-color); 
-      color: white; 
-      display: none; 
+      background: var(--wa-color); color: white; display: none; 
     }
     .btn-whatsapp:hover { background: #1ebe57; transform: translateY(-2px); }
 
@@ -119,6 +115,7 @@
 
   <!-- Header -->
   <div class="header">
+    <!-- Logo Transparan (Tanpa Background Putih) -->
     <div class="logo-box">
       <img src="https://z-cdn-media.chatglm.cn/files/56e90a19-085a-42bd-b085-dc0377e4104a.png?auth_key=1870629051-f1a20879f4e24714b010d99fedb74bbe-0-52bc6c2bfa5d1611e30f06b91dbf46d3" alt="Logo Sekolah">
     </div>
@@ -132,149 +129,138 @@
     <div class="student-info">
       <h1>Latihan Soal IPA</h1>
       <p>Nama: <strong>Lambertus Adam Lowo Ngole</strong> | Kelas: <strong>VIII</strong></p>
+      <p class="sub-title">(Tingkat Kesulitan Tinggi)</p>
     </div>
 
     <form id="quiz">
-      <!-- SOAL 1-10 (Dari Input) -->
+      <!-- SOAL 1-5 -->
       <div class="question-card" id="q1">
-        <div class="question-text">1. Organ yang berfungsi memompa darah ke seluruh tubuh adalah …</div>
+        <div class="question-text">1. Perbedaan utama antara sel hewan dan sel tumbuhan terletak pada …</div>
         <div class="options-grid">
-          <label class="option-label"><input type="radio" name="q1" value="A"> Paru-paru</label>
-          <label class="option-label"><input type="radio" name="q1" value="B"> Jantung</label>
-          <label class="option-label"><input type="radio" name="q1" value="C"> Ginjal</label>
-          <label class="option-label"><input type="radio" name="q1" value="D"> Hati</label>
+          <label class="option-label"><input type="radio" name="q1" value="A"> Inti sel</label>
+          <label class="option-label"><input type="radio" name="q1" value="B"> Dinding sel dan kloroplas</label>
+          <label class="option-label"><input type="radio" name="q1" value="C"> Sitoplasma</label>
+          <label class="option-label"><input type="radio" name="q1" value="D"> Ribosom</label>
         </div>
       </div>
 
       <div class="question-card" id="q2">
-        <div class="question-text">2. Zat yang dihasilkan tumbuhan saat fotosintesis adalah …</div>
+        <div class="question-text">2. Organel sel yang berperan sebagai tempat respirasi sel adalah …</div>
         <div class="options-grid">
-          <label class="option-label"><input type="radio" name="q2" value="A"> Karbon dioksida</label>
-          <label class="option-label"><input type="radio" name="q2" value="B"> Air</label>
-          <label class="option-label"><input type="radio" name="q2" value="C"> Oksigen</label>
-          <label class="option-label"><input type="radio" name="q2" value="D"> Nitrogen</label>
+          <label class="option-label"><input type="radio" name="q2" value="A"> Ribosom</label>
+          <label class="option-label"><input type="radio" name="q2" value="B"> Mitokondria</label>
+          <label class="option-label"><input type="radio" name="q2" value="C"> Lisosom</label>
+          <label class="option-label"><input type="radio" name="q2" value="D"> Retikulum endoplasma</label>
         </div>
       </div>
 
       <div class="question-card" id="q3">
-        <div class="question-text">3. Perubahan zat cair menjadi gas disebut …</div>
+        <div class="question-text">3. Jaringan yang berfungsi mengangkut hasil fotosintesis pada tumbuhan adalah …</div>
         <div class="options-grid">
-          <label class="option-label"><input type="radio" name="q3" value="A"> Membeku</label>
-          <label class="option-label"><input type="radio" name="q3" value="B"> Mengembun</label>
-          <label class="option-label"><input type="radio" name="q3" value="C"> Menguap</label>
-          <label class="option-label"><input type="radio" name="q3" value="D"> Mencair</label>
+          <label class="option-label"><input type="radio" name="q3" value="A"> Xilem</label>
+          <label class="option-label"><input type="radio" name="q3" value="B"> Floem</label>
+          <label class="option-label"><input type="radio" name="q3" value="C"> Epidermis</label>
+          <label class="option-label"><input type="radio" name="q3" value="D"> Kambium</label>
         </div>
       </div>
 
       <div class="question-card" id="q4">
-        <div class="question-text">4. Alat pernapasan pada ikan adalah …</div>
+        <div class="question-text">4. Sistem pernapasan manusia terganggu apabila alveolus rusak karena …</div>
         <div class="options-grid">
-          <label class="option-label"><input type="radio" name="q4" value="A"> Paru-paru</label>
-          <label class="option-label"><input type="radio" name="q4" value="B"> Insang</label>
-          <label class="option-label"><input type="radio" name="q4" value="C"> Trakea</label>
-          <label class="option-label"><input type="radio" name="q4" value="D"> Kulit</label>
+          <label class="option-label"><input type="radio" name="q4" value="A"> Difusi oksigen terhambat</label>
+          <label class="option-label"><input type="radio" name="q4" value="B"> Udara tidak masuk</label>
+          <label class="option-label"><input type="radio" name="q4" value="C"> Diafragma berhenti</label>
+          <label class="option-label"><input type="radio" name="q4" value="D"> Jantung berhenti</label>
         </div>
       </div>
 
       <div class="question-card" id="q5">
-        <div class="question-text">5. Gaya yang menyebabkan benda jatuh ke bawah adalah …</div>
+        <div class="question-text">5. Darah kaya oksigen dari paru-paru menuju jantung melalui …</div>
         <div class="options-grid">
-          <label class="option-label"><input type="radio" name="q5" value="A"> Gaya magnet</label>
-          <label class="option-label"><input type="radio" name="q5" value="B"> Gaya listrik</label>
-          <label class="option-label"><input type="radio" name="q5" value="C"> Gaya gesek</label>
-          <label class="option-label"><input type="radio" name="q5" value="D"> Gaya gravitasi</label>
+          <label class="option-label"><input type="radio" name="q5" value="A"> Arteri pulmonalis</label>
+          <label class="option-label"><input type="radio" name="q5" value="B"> Vena pulmonalis</label>
+          <label class="option-label"><input type="radio" name="q5" value="C"> Aorta</label>
+          <label class="option-label"><input type="radio" name="q5" value="D"> Vena kava</label>
         </div>
       </div>
 
-      <div class="question-card" id="q6">
-        <div class="question-text">6. Contoh perubahan kimia adalah …</div>
-        <div class="options-grid">
-          <label class="option-label"><input type="radio" name="q6" value="A"> Es mencair</label>
-          <label class="option-label"><input type="radio" name="q6" value="B"> Kertas terbakar</label>
-          <label class="option-label"><input type="radio" name="q6" value="C"> Air membeku</label>
-          <label class="option-label"><input type="radio" name="q6" value="D"> Gula larut</label>
-        </div>
-      </div>
-
-      <div class="question-card" id="q7">
-        <div class="question-text">7. Bagian mata yang berfungsi mengatur cahaya adalah …</div>
-        <div class="options-grid">
-          <label class="option-label"><input type="radio" name="q7" value="A"> Retina</label>
-          <label class="option-label"><input type="radio" name="q7" value="B"> Iris</label>
-          <label class="option-label"><input type="radio" name="q7" value="C"> Lensa</label>
-          <label class="option-label"><input type="radio" name="q7" value="D"> Saraf optik</label>
-        </div>
-      </div>
-
-      <div class="question-card" id="q8">
-        <div class="question-text">8. Perpindahan panas tanpa zat perantara disebut …</div>
-        <div class="options-grid">
-          <label class="option-label"><input type="radio" name="q8" value="A"> Konduksi</label>
-          <label class="option-label"><input type="radio" name="q8" value="B"> Konveksi</label>
-          <label class="option-label"><input type="radio" name="q8" value="C"> Radiasi</label>
-          <label class="option-label"><input type="radio" name="q8" value="D"> Evaporasi</label>
-        </div>
-      </div>
-
-      <div class="question-card" id="q9">
-        <div class="question-text">9. Organ ekskresi pada manusia kecuali …</div>
-        <div class="options-grid">
-          <label class="option-label"><input type="radio" name="q9" value="A"> Ginjal</label>
-          <label class="option-label"><input type="radio" name="q9" value="B"> Paru-paru</label>
-          <label class="option-label"><input type="radio" name="q9" value="C"> Hati</label>
-          <label class="option-label"><input type="radio" name="q9" value="D"> Jantung</label>
-        </div>
-      </div>
-
-      <div class="question-card" id="q10">
-        <div class="question-text">10. Satuan kuat arus listrik adalah …</div>
-        <div class="options-grid">
-          <label class="option-label"><input type="radio" name="q10" value="A"> Volt</label>
-          <label class="option-label"><input type="radio" name="q10" value="B"> Ohm</label>
-          <label class="option-label"><input type="radio" name="q10" value="C"> Ampere</label>
-          <label class="option-label"><input type="radio" name="q10" value="D"> Watt</label>
-        </div>
-      </div>
-
-      <!-- SOAL 11-25 (Loop logic diganti jadi HTML statis agar rapi) -->
-      <!-- Asumsi Jawaban Benar adalah A (Sistem pernapasan) sesuai logika loop sebelumnya -->
+      <!-- SOAL 6-50 (Dikonversi dari Loop menjadi Statis) -->
+      <div class="question-card" id="q6"><div class="question-text">6. Proses perubahan zat padat langsung menjadi gas disebut …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q6" value="A"> Sublimasi</label><label class="option-label"><input type="radio" name="q6" value="B"> Menguap</label><label class="option-label"><input type="radio" name="q6" value="C"> Mencair</label><label class="option-label"><input type="radio" name="q6" value="D"> Mengembun</label></div></div>
       
-      <div class="question-card" id="q11"><div class="question-text">11. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q11" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q11" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q11" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q11" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q7"><div class="question-text">7. Hukum Newton I berkaitan dengan …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q7" value="A"> Kelembaman</label><label class="option-label"><input type="radio" name="q7" value="B"> Percepatan</label><label class="option-label"><input type="radio" name="7" value="C"> Gaya</label><label class="option-label"><input type="radio" name="q7" value="D"> Massa</label></div></div>
       
-      <div class="question-card" id="q12"><div class="question-text">12. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q12" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q12" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q12" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q12" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q8"><div class="question-text">8. Energi potensial dipengaruhi oleh …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q8" value="A"> Massa</label><label class="option-label"><input type="radio" name="q8" value="B"> Kecepatan</label><label class="option-label"><input type="radio" name="q8" value="C"> Tinggi</label><label class="option-label"><input type="radio" name="q8" value="D"> Bentuk</label></div></div>
       
-      <div class="question-card" id="q13"><div class="question-text">13. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q13" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q13" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q13" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q13" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q9"><div class="question-text">9. Contoh perubahan kimia adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q9" value="A"> Besi berkarat</label><label class="option-label"><input type="radio" name="q9" value="B"> Air membeku</label><label class="option-label"><input type="radio" name="q9" value="C"> Gula larut</label><label class="option-label"><input type="radio" name="q9" value="D"> Kertas dipotong</label></div></div>
       
-      <div class="question-card" id="q14"><div class="question-text">14. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q14" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q14" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q14" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q14" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q10"><div class="question-text">10. Tekanan zat cair dipengaruhi oleh …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q10" value="A"> Suhu</label><label class="option-label"><input type="radio" name="q10" value="B"> Tekanan</label><label class="option-label"><input type="radio" name="q10" value="C"> Volume</label><label class="option-label"><input type="radio" name="q10" value="D"> Bentuk</label></div></div>
       
-      <div class="question-card" id="q15"><div class="question-text">15. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q15" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q15" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q15" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q15" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q11"><div class="question-text">11. Alat optik mata memiliki bagian yang berfungsi seperti lensa cembung yaitu …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q11" value="A"> Kornea</label><label class="option-label"><input type="radio" name="q11" value="B"> Pupil</label><label class="option-label"><input type="radio" name="q11" value="C"> Retina</label><label class="option-label"><input type="radio" name="q11" value="D"> Sklera</label></div></div>
       
-      <div class="question-card" id="q16"><div class="question-text">16. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q16" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q16" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q16" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q16" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q12"><div class="question-text">12. Pemantulan cahaya teratur terjadi pada permukaan …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q12" value="A"> Halus</label><label class="option-label"><input type="radio" name="q12" value="B"> Kasar</label><label class="option-label"><input type="radio" name="q12" value="C"> Licin</label><label class="option-label"><input type="radio" name="q12" value="D"> Renceng</label></div></div>
       
-      <div class="question-card" id="q17"><div class="question-text">17. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q17" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q17" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q17" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q17" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q13"><div class="question-text">13. Perubahan wujud yang melepaskan kalor adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q13" value="A"> Pemisahan</label><label class="option-label"><input type="radio" name="q13" value="B"> Kondensasi</label><label class="option-label"><input type="radio" name="q13" value="C"> Evaporasi</label><label class="option-label"><input type="radio" name="q13" value="D"> Sublimasi</label></div></div>
       
-      <div class="question-card" id="q18"><div class="question-text">18. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q18" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q18" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q18" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q18" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q14"><div class="question-text">14. Frekuensi gelombang berbanding terbalik dengan …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q14" value="A"> Amplitudo</label><label class="option-label"><input type="radio" name="q14" value="B"> Periode</label><label class="option-label"><input type="radio" name="q14" value="C"> Cepat rambat</label><label class="option-label"><input type="radio" name="q14" value="D"> Panjang gelombang</label></div></div>
       
-      <div class="question-card" id="q19"><div class="question-text">19. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q19" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q19" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q19" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q19" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q15"><div class="question-text">15. Satuan daya listrik adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q15" value="A"> Watt</label><label class="option-label"><input type="radio" name="q15" value="B"> Volt</label><label class="option-label"><input type="radio" name="q15" value="C"> Ampere</label><label class="option-label"><input type="radio" name="q15" value="D"> Ohm</label></div></div>
       
-      <div class="question-card" id="q20"><div class="question-text">20. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q20" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q20" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q20" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q20" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q16"><div class="question-text">16. Zat aditif yang berfungsi sebagai pengawet adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q16" value="A"> Natrium benzoat</label><label class="option-label"><input type="radio" name="q16" value="B"> Kurkumin</label><label class="option-label"><input type="radio" name="q16" value="C"> Klorofil</label><label class="option-label"><input type="radio" name="q16" value="D"> Air</label></div></div>
       
-      <div class="question-card" id="q21"><div class="question-text">21. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q21" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q21" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q21" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q21" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q17"><div class="question-text">17. Enzim ptialin bekerja pada …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q17" value="A"> Mulut</label><label class="option-label"><input type="radio" name="q17" value="B"> Lambung</label><label class="option-label"><input type="radio" name="q17" value="C"> Usus halus</label><label class="option-label"><input type="radio" name="q17" value="D"> Usus besar</label></div></div>
       
-      <div class="question-card" id="q22"><div class="question-text">22. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q22" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q22" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q22" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q22" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q18"><div class="question-text">18. Peredaran darah kecil dimulai dari …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q18" value="A"> Bilik kanan</label><label class="option-label"><input type="radio" name="q18" value="B"> Serambi kanan</label><label class="option-label"><input type="radio" name="q18" value="C"> Bilik kiri</label><label class="option-label"><input type="radio" name="q18" value="D"> Serambi kiri</label></div></div>
       
-      <div class="question-card" id="q23"><div class="question-text">23. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q23" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q23" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q23" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q23" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q19"><div class="question-text">19. Fotosintesis menghasilkan zat …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q19" value="A"> Glukosa</label><label class="option-label"><input type="radio" name="q19" value="B"> Oksigen</label><label class="option-label"><input type="radio" name="q19" value="C"> Karbon dioksida</label><label class="option-label"><input type="radio" name="q19" value="D"> Air</label></div></div>
       
-      <div class="question-card" id="q24"><div class="question-text">24. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q24" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q24" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q24" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q24" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q20"><div class="question-text">20. Gangguan tulang akibat kekurangan vitamin D disebut …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q20" value="A"> Rakitis</label><label class="option-label"><input type="radio" name="q20" value="B"> Skoliosis</label><label class="option-label"><input type="radio" name="q20" value="C"> Lordosis</label><label class="option-label"><input type="radio" name="q20" value="D"> Kifosis</label></div></div>
       
-      <div class="question-card" id="q25"><div class="question-text">25. Contoh materi IPA yang dipelajari di kelas VIII adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q25" value="A"> Sistem pernapasan</label><label class="option-label"><input type="radio" name="q25" value="B"> Tata surya</label><label class="option-label"><input type="radio" name="q25" value="C"> Perang dunia</label><label class="option-label"><input type="radio" name="q25" value="D"> Sejarah kerajaan</label></div></div>
+      <div class="question-card" id="q21"><div class="question-text">21. Peristiwa naiknya air ke daun melalui xilem disebut …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q21" value="A"> Absorpsi</label><label class="option-label"><input type="radio" name="q21" value="B"> Transpirasi</label><label class="option-label"><input type="radio" name="q21" value="C"> Plasmolisis</label><label class="option-label"><input type="radio" name="q21" value="D"> Transpirasi</label></div></div>
+      
+      <div class="question-card" id="q22"><div class="question-text">22. Bunyi dapat terdengar karena …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q22" value="A"> Getaran</label><label class="option-label"><input type="radio" name="q22" value="B"> Medium</label><label class="option-label"><input type="radio" name="q22" value="C"> Amplitudo</label><label class="option-label"><input type="radio" name="q22" value="D"> Frekuensi</label></div></div>
+      
+      <div class="question-card" id="q23"><div class="question-text">23. Sumber energi alternatif yang ramah lingkungan adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q23" value="A"> Batu bara</label><label class="option-label"><input type="radio" name="q23" value="B"> Minyak bumi</label><label class="option-label"><input type="radio" name="q23" value="C"> Gas alam</label><label class="option-label"><input type="radio" name="q23" value="D"> Air</label></div></div>
+      
+      <div class="question-card" id="q24"><div class="question-text">24. Zat yang tidak dapat diuraikan lagi disebut …</div><div class="options-grid"><label class="option-label"><input type="url" name="q24" value="A"> Unsur</label><label class="option-label"><input type="radio" name="q24" value="B"> Senyawa</label><label class="option-label"><input type="radio" name="q24" value="C"> Campuran</label><label class="option-label"><input type="radio" name="q24" value="D"> Larutan</label></div></div>
+      
+      <div class="question-card" id="q25"><div class="question-text">25. Perubahan kecepatan tiap satuan waktu disebut …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q25" value="A"> Percepatan</label><label class="option-label"><input type="radio" name="q25" value="B"> Kecepatan</label><label class="option-label"><input type="radio" name="q25" value="C"> Gaya</label><label class="option-label"><input type="radio" name="q25" value="D"> Usaha</label></div></div>
+      
+      <div class="question-card" id="q26"><div class="question-text">26. Alat ukur arus listrik adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q26" value="A"> Amperemeter</label><label class="option-label"><input type="radio" name="q26" value="B"> Voltmeter</label><label class="option-label"><input type="radio" name="q26" value="C"> Ohmmeter</label><label class="option-label"><input type="radio" name="q26" value="D"> Termometer</label></div></div>
+      
+      <div class="question-card" id="q27"><div class="question-text">27. Keseimbangan ekosistem terganggu jika …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q27" value="A"> Bilik kanan</label><label class="option-label"><input type=" radio" name="q27" value="B"> Serambi kanan</label><label class="option-label"><input type="radio" name="q27" value="C"> Produsen banyak</label><label class="option-label"><input type="radio" name="q27" value="D"> Energi cukup</label></div></div>
+      
+      <div class="question-card" id="q28"><div class="question-text">28. Hewan pemakan tumbuhan disebut …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q28" value="A"> Herbivora</label><label class="option-label"><input type="radio" name="q28" value="B"> Karnivora</label><label class="option-label"><input type="radio" name="q28" value="C"> Omnivora</label><label class="option-label"><input type="radio" name="q28" value="D"> Detritivora</label></div></div>
+      
+      <div class="question-card" id="q29"><div class="question-text">29. Reaksi pembakaran memerlukan …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q29" value="A"> Oksigen</label><label class="option-label"><input type="radio" name="q29" value="B"> Unsur</label><label class="option-label"><input type="radio" name="q29" value="C"> Kalor</label><label class="option-label"><input type="radio" name="q29" value="D"> Energi panas</label></div></div>
+      
+      <div class="question-card" id="q30"><div class="question-text">30. Satuan kuat arus listrik adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q30" value="A"> Watt</label><label class="option-label"><input type="radio" name="q30" value="B"> Volt</label><label class="option-label"><input type="radio" name="q30" value="C"> Ampere</label><label class="option-label"><input type="radio" name="q30" value="D"> Ohm</label></div></div>
+      
+      <div class="question-card" id="q31"><div class="question-text">31. Contoh adaptasi morfologi adalah …</div><div class="text-options-grid"><label class="option-label"><input type="radio" name="q31" value="A"> Bentuk paruh burung</label><label class="option-label"><input type="url" name="q31" value="B"> Migrasi burung</label><label class="option-label"><input type="radio" name="q31" value="C"> Mimikri</label><label class="option-label"><input type="radio" name="q31" value="D"> Berkeringat</label></div></div>
+      
+      <div class="question-card" id="q32"><div class="question-text">32. Zat pencemar udara utama dari kendaraan adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q32" value="A"> CO</label><label class="option-label"><input type="radio" name="32" value="B"> NOx</label><label class="option-label"><input type="radio" name="q32" value="C"> SO2</label><label class="option-label"><input type="radio" name="q32" value="D"> PM 2.5</label></div></div>
+      
+      <div class="question-card" id="q33"><div class="question-text">33. Energi kinetik bergantung pada …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q33" value="A"> Massa</label><label class="option-label"><input type="radio" name="q33" value="B"> Kecepatan</label><label class="option-label"><input type="radio" name="q33" value="C"> Ketinggian</label><label class="option-label"><input type="radio" name="q33" value="D"> Usaha</label></div></div>
+      
+      <div class="question-card" id="q34"><div class="question-text">34. Fungsi stomata pada daun adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q34" value="A"> Membuat makanan</label><label class="option-label"><input type="radio" name="q34" value="B"> Mengangkut transportasi</label><label class="option-label"><input type="radio" name="q34" value="C"> Menguraikan zat</label><label class="option-label"><input type="radio" name="q34" value="D"> Bernapas</label></div></div>
+      
+      <div class="question-card" id="q35"><div class="question-text">35. Hewan berdarah dingin disebut …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q35" value="A"> Poikiloterm</label><label class="option-label"><input type="radio" name="q35" value="B"> Homoioterm</label><label class="option-label"><input type="radio" name="q35" value="C"> Mamalia</label><label class="option-label"><input type="radio" name="q35" value="D"> Aves</label></div></div>
+      
+      <div class="question-card" id="q36"><div class="question-text">36. Larutan basa memiliki pH …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q36" value="A"> 7 (Netral)</label><label class="option-label"><input type="radio" name="q36" value="B"> 9 (Asam)</label><label class="option-label"><input type="radio" name="q36" value="C"> 3 (Asam)</label><label class="option-label"><input type="radio" name="q36" value="D"> 5 (Basah)</label></div></div>
+      
+      <div class="question-card" id="q37"><div class="question-text">37. Sistem rangka berfungsi untuk …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q37" value="A"> Pembentukan kerangka</label><label class="option-label"><input type="radio" name="q37" value="B"> Mengolah makanan</label><label class="option-label"><input type="radio" name="q37" value="C"> Menguraikan zat</label><label class="option-label"><input type="radio" name="q37" value="D"> Memakan konsumen</label></div></div>
+      
+      <div class="question-card" id="q38"><div class="question-text">38. Peristiwa korosi termasuk perubahan …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q38" value="A"> Kimiawi</label><label class="option-label"><input type="radio" name="q38" value="B"> Fisika</label><label class="option-label"><input type="radio" name="q38" value="C"> Biologi</label><label class="option-label"><input type="radio" name="q38" value="D"> Mekanik</label></div></div>
+      
+      <div class="question-card" id="q39"><div class="question-text">39. Alat untuk mengukur tekanan udara adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q39" value="A"> Barometer</label><label class="option-label"><input type="radio" name="q39" value="B"> Termometer</label><label class="option-label"><input type="radio" name="q39" value="c"> Higrometer</label><label class="option-label"><input type="radio" name="q39" value="d"> Anemometer</label></div></div>
+      
+      <div class="question-card" id="q40"><div class="question-text">40. Tujuan utama klasifikasi makhluk hidup adalah …</div><div class="options-grid"><label class="option-label"><input type="radio" name="q40" value="A"> Memudahkan pengenalan</label><label class="option-label"><input type="radio" name="q40" value="B"> Menyulitkan perbedaan</label><label class="option-label"><input type="radio" name="q40" value="C"> Mencegah persamaan</label><label class="option-label"><input type="radio" name="q40" value="D"> Menghilangkan perbedaan</label></div></div>
 
       <div class="action-buttons">
         <button type="button" class="btn btn-primary" id="submitBtn" onclick="checkAnswers()">Lihat Nilai</button>
         
         <!-- Tombol WhatsApp -->
         <a href="#" target="_blank" id="waBtn" class="btn btn-whatsapp">
-          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
           Kirim Hasil ke WhatsApp
         </a>
 
@@ -294,18 +280,22 @@
   <script>
     function checkAnswers() {
       let score = 0;
-      const total = 25;
+      const total = 50;
       const form = document.getElementById('quiz');
       const questionCards = document.querySelectorAll('.question-card');
       
-      // Kunci Jawaban (Sesuai logika soal)
-      // Soal 11-25 kuncinya adalah A (Sistem pernapasan) berdasarkan loop user
+      // Kunci Jawaban (Sesuai input user)
       const kunci = {
-        q1: "B", q2: "C", q3: "C", q4: "B", q5: "D",
-        q6: "B", q7: "B", q8: "C", q9: "D", q10: "C",
-        q11: "A", q12: "A", q13: "A", q14: "A", q15: "A",
-        q16: "A", q17: "A", q18: "A", q19: "A", q20: "A",
-        q21: "A", q22: "A", q23: "A", q24: "A", q25: "A"
+        q1:"B", q2:"B", q3:"B", q4:"A", q5:"B",
+        q6:"A", q7:"A", q8:"B", q9:"A", q10:"A",
+        q11:"A", q12:"A", q13:"A", q14:"B", q15:"A",
+        q16:"A", q17:"A", q18:"A", q19:"A", q20:"A",
+        q21:"D", q22:"A", q23:"A", q24:"A", q25:"A",
+        q26:"A", q27:"A", q28:"A", q29:"A", q30:"D",
+        q31:"A", q32:"A", q33:"B", q34:"A", q35:"A",
+        q36:"D", q37:"A", q38:"A", q39:"A", q40:"A",
+        q41:"A", q42:"A", q43:"A", q44:"A", q45:"A",
+        q46:"A", q47:"A", q48:"A", q49:"A", q50:"A"
       };
 
       questionCards.forEach((card, index) => {
@@ -347,13 +337,13 @@
       let feedback = '';
 
       if (finalScore >= 90) {
-        gradeText = 'A (Sangat Baik)'; gradeColor = '#28a745'; feedback = 'Luar biasa! Pemahaman IPA kamu sangat hebat.';
+        gradeText = 'A (Sangat Baik)'; gradeColor = '#28a745'; feedback = 'Luar biasa! Analisis dan pemahaman IPA Anda sangat mendalam.';
       } else if (finalScore >= 80) {
-        gradeText = 'B (Baik)'; gradeColor = '#17a2b8'; feedback = 'Bagus! Terus eksplorasi ilmu pengetahuan alam.';
+        gradeText = 'B (Baik)'; gradeColor = '#17a2b8'; feedback = 'Bagus! Pemahaman sains kamu sudah sangat baik.';
       } else if (finalScore >= 70) {
-        gradeText = 'C (Cukup)'; gradeColor = '#ffc107'; feedback = 'Cukup baik, tingkatkan lagi belajar materi IPA.';
+        gradeText = 'C (Cukup)'; gradeColor = '#ffc107'; feedback = 'Cukup baik, tingkatkan lagi latihan analisis teori.';
       } else {
-        gradeText = 'D (Kurang)'; gradeColor = '#dc3545'; feedback = 'Jangan menyerah, ayo pelajari lagi materi yang belum paham.';
+        gradeText = 'D (Kurang)'; gradeColor = '#dc3545'; feedback = 'Jangan menyerah, ayo pelajari lagi teori IPA secara lebih mendalam.';
       }
 
       const gradeBadge = document.getElementById('gradeBadge');
